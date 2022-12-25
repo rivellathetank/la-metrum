@@ -5,6 +5,7 @@
 - [Logs](#logs)
 - [Updates](#updates)
 - [Limitations](#limitations)
+- [Compiling](#compiling)
 - [License](#license)
 
 The high-level architecture is the same as in [shalzuth/LostArkLogger](
@@ -35,12 +36,27 @@ them in `%LOCALAPPDATA%\rivellathetank\la-metrum`.
 
 ## Updates
 
-When Lost Ark client is updated, the damage meter may stop working until it is in turn updated.
-[Installation](#installation) instructions work for updates, too.
+When Lost Ark client is updated, the damage meter may stop working. Once the damage meter is in turn
+updated and a new version is released, you'll need to upgrade to it. [Installation](#installation)
+instructions work for upgrading to the latest version, too.
+
+If you want to be notified about new releases, click *Watch* at the top, then *Custom* and tick
+*Releases*. You'll need a GitHub account for that.
 
 ## Limitations
 
 Only Steam client is supported.
+
+## Compiling
+
+```shell
+git clone --config core.autocrlf=true https://github.com/rivellathetank/la-metrum.git
+cd la-metrum
+dotnet.exe publish -c Release -r win-x64 --self-contained
+zip la-metrum.zip bin/x64/Release/net7.0-windows/win-x64/publish/*
+```
+
+This is how releases are built. Builds are reproducible.
 
 ## License
 
