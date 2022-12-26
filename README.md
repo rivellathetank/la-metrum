@@ -1,5 +1,6 @@
 # la-metrum: Damage Meter for Lost Ark
 
+- [Screenshots](#screenshots)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Logs](#logs)
@@ -12,6 +13,18 @@ The high-level architecture is the same as in [shalzuth/LostArkLogger](
   https://github.com/shalzuth/LostArkLogger). The binary protocol (symmetric encryption key,
 opcodes and message layout) is imported from [lost-ark-dev/meter-core](
   https://github.com/lost-ark-dev/meter-core).
+
+## Screenshots
+
+### Encounter Damage Report
+
+![Battle](
+  https://raw.githubusercontent.com/rivellathetank/la-metrum/master/Screenshots/battle.jpg)
+
+### Player Damage Report
+
+![Player](
+  https://raw.githubusercontent.com/rivellathetank/la-metrum/master/Screenshots/player.jpg)
 
 ## Installation
 
@@ -26,8 +39,11 @@ opcodes and message layout) is imported from [lost-ark-dev/meter-core](
 2. If it asks for access to public and private networks, allow both.
 3. Move the window by dragging with the left mouse button.
 4. Play Lost Ark.
-5. *Optional*: Focus the window and press <kbd>R</kbd> to rotate stats.
+5. Left mouse click to drill down, right mouse click to go up one level.
 6. Focus the window and press <kbd>Q</kbd> to quit.
+
+You can manually rotate stats (end the current battle and start a new one) by
+focusing the window and pressing <kbd>R</kbd>.
 
 ## Logs
 
