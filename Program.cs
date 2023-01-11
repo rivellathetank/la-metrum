@@ -93,7 +93,7 @@ namespace LaMetrum {
 
     static bool? IsUpdateAvailable(Version v) {
       using HttpClient client = new() { Timeout = TimeSpan.FromSeconds(5) };
-      using HttpRequestMessage req = new(HttpMethod.Head, $"https://github.com/rivellathetank/la-metrum/tree/v{v}");
+      using HttpRequestMessage req = new(HttpMethod.Head, $"https://github.com/rivellathetank/la-metrum/tree/la.{v}");
       try {
         using HttpResponseMessage resp = client.Send(req, HttpCompletionOption.ResponseHeadersRead);
         if (resp.IsSuccessStatusCode) return true;
