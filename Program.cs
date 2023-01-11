@@ -1,7 +1,9 @@
 using NLog;
+using System.Diagnostics;
 using System.Globalization;
 using System.Net;
 using System.Net.Sockets;
+using System.Text;
 
 namespace LaMetrum {
   static class Program {
@@ -56,11 +58,57 @@ namespace LaMetrum {
         Environment.Exit(1);
       }
       if (supported != installed) {
-        MessageBox.Show(
-            $"Lost Ark version mismatch!\n\nSupported version: {supported}\n  Installed version: {installed}",
-            Application.ProductName, MessageBoxButtons.OK);
+        bool? update = IsUpdateAvailable(installed);
+        StringBuilder msg = new();
+        msg.Append("Lost Ark version does not match LaMetrum compatibility version.\n");
+        msg.Append('\n');
+        msg.AppendFormat("  Lost Ark version: {0}\n", installed);
+        msg.AppendFormat("  LaMetrum compatibility version: {0}\n", supported);
+        msg.Append('\n');
+        switch (IsUpdateAvailable(installed)) {
+          case true:
+            msg.Append("Please download the latest version of LaMetrum and try again.\n");
+            msg.Append('\n');
+            break;
+          case false:
+            msg.Append("Please wait for a new version of LaMetrum to be released.\n");
+            msg.Append('\n');
+            break;
+          case null:
+            break;
+        }
+        msg.Append("Open the LaMetrum release page in a browser?");
+        DialogResult r = MessageBox.Show(
+            msg.ToString(),
+            Application.ProductName,
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Warning,
+            MessageBoxDefaultButton.Button1);
+        if (r == DialogResult.Yes) {
+          OpenInBrowser("https://github.com/rivellathetank/la-metrum/releases");
+        }
         Environment.Exit(1);
       }
+    }
+
+    static bool? IsUpdateAvailable(Version v) {
+      using HttpClient client = new() { Timeout = TimeSpan.FromSeconds(5) };
+      using HttpRequestMessage req = new(HttpMethod.Head, $"https://github.com/rivellathetank/la-metrum/tree/v{v}");
+      try {
+        using HttpResponseMessage resp = client.Send(req, HttpCompletionOption.ResponseHeadersRead);
+        if (resp.IsSuccessStatusCode) return true;
+        if (resp.StatusCode == HttpStatusCode.NotFound) return false;
+        return null;
+      } catch (Exception) {
+        return null;
+      }
+    }
+
+    static void OpenInBrowser(string url) {
+      using Process p = new();
+      p.StartInfo.UseShellExecute = true;
+      p.StartInfo.FileName = url;
+      p.Start();
     }
   }
 }
