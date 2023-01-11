@@ -57,7 +57,7 @@ namespace LaMetrum {
             Application.ProductName, MessageBoxButtons.OK);
         Environment.Exit(1);
       }
-      if (true || supported != installed) {
+      if (supported != installed) {
         StringBuilder msg = new();
         msg.Append("Lost Ark version does not match LaMetrum compatibility version.\n");
         msg.Append('\n');
