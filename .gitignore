@@ -1,11 +1,7 @@
 /.vs/
 /bin/
 /obj/
-/packages/
 
-*.suo
-*.psess
-*.vsp
-*.vspx
+/la-metrum.zip
+
 *.csproj.user
-*.zwc

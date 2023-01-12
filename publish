@@ -1,0 +1,9 @@
+set -uex
+dir="$(dirname -- "$0")"
+cd -- "$dir"
+dir="$(pwd)"
+rm -f la-metrum.zip
+find . -depth -type d -a \( -name bin -o -name obj \) -exec rm -rf '{}' ';'
+dotnet.exe publish -c Release -r win-x64 --self-contained
+cd -- bin/x64/Release/net7.0-windows/win-x64/publish
+zip -r "$dir"/la-metrum.zip ./
