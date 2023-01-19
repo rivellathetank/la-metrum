@@ -2,14 +2,14 @@ namespace LaMetrum {
   class PKTNewNpcSummon : IMessage {
     public PKTNewNpcSummon(FieldReader r) {
       TsReader reader = new(r);
-      reader.u8();
-      reader.skip(9);
+      reader.skip(5);
       OwnerId = reader.u64();
-      reader.skip(22);
+      reader.skip(26);
+      reader.u8();
       NpcData = new(r);
     }
 
-    public const ushort OpCode = 57156;
+    public const ushort OpCode = 13729;
 
     public void Validate() {
       Check(OwnerId <= (ulong.MaxValue >> 16), OwnerId);

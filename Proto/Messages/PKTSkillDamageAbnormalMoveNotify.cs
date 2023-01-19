@@ -2,15 +2,15 @@ namespace LaMetrum {
   class PKTSkillDamageAbnormalMoveNotify : IMessage {
     public PKTSkillDamageAbnormalMoveNotify(FieldReader r) {
       TsReader reader = new(r);
-      reader.u32();
-      SourceId = reader.u64();
       reader.u8();
+      SourceId = reader.u64();
+      reader.u32();
       SkillDamageAbnormalMoveEvents = reader.array<SkillDamageAbnormalMoveEvent>();
-      SkillEffectId = reader.u32();
       SkillId = reader.u32();
+      SkillEffectId = reader.u32();
     }
 
-    public const ushort OpCode = 29416;
+    public const ushort OpCode = 10555;
 
     public void Validate() {
       Check(SourceId <= (ulong.MaxValue >> 16), SourceId);

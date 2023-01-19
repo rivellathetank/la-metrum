@@ -4,7 +4,7 @@ using System.Net;
 
 namespace LaMetrum {
   static class GameInfo {
-    public static Version SupportedVersion { get; } = new("1.42.75.1963448");
+    public static Version SupportedVersion { get; } = new("1.397.435.1993691");
 
     public static string ProcessName => "LOSTARK";
 

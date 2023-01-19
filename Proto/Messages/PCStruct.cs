@@ -8,93 +8,62 @@ namespace LaMetrum {
   class PCStruct {
     public PCStruct(FieldReader r) {
       TsReader reader = new(r);
-      reader.str(20);
-      reader.u16();
       reader.u8();
-      reader.u32();
+      reader.u8();
       reader.u32();
       if (reader.bl()) reader.bytes(12);
-      reader.u8();
-      reader.array(
-        reader.u16(),
-        () => {
-          reader.u64();
-          reader.ReadNBytesInt64();
-          reader.u8();
-          reader.u16();
-          reader.ReadNBytesInt64();
-          reader.u8();
-          reader.u8();
-        },
-        5);
-      reader.array(
-        reader.u16(),
-        () => {
-          reader.u16();
-          reader.u32();
-          reader.u16();
-          reader.LostArkDateTime();
-          if (reader.bl()) reader.u8();
-          reader.bytes(reader.u16(), 3, 14);
-        },
-        30);
-      reader.u8();
       reader.u16();
-      GearLevel = reader.u32();
+      reader.array(reader.u16(), () => Unk.read19(reader), 30);
+      reader.bytes(25);
       reader.array(
         reader.u16(),
         () => {
-          reader.bytes(reader.u16(), 5, 4);
+          reader.u8();
+          Unk.read14(reader);
+        },
+        152);
+      Name = reader.str(20);
+      reader.u64();
+      reader.u16();
+      reader.bytes(5);
+      reader.bytes(reader.u16(), 200, 4);
+      Unk.read22(reader);
+      reader.u8();
+      reader.u32();
+      reader.u8();
+      reader.array(reader.u16(), () => Unk.read19(reader), 9);
+      ClassId = reader.u16();
+      reader.u32();
+      reader.str(20);
+      reader.u32();
+      reader.u8();
+      PlayerId = reader.u64();
+      reader.u32();
+      reader.u8();
+      reader.array(
+        reader.u16(),
+        () => {
+          reader.array(reader.u16(), () => reader.u32(), 5);
           reader.u32();
         },
         200);
+      reader.u32();
       reader.u8();
-      reader.u8();
+      reader.array(reader.u16(), () => Unk.read13(reader), 80);
       reader.u8();
       reader.u32();
       reader.u8();
-      Level = reader.u16();
-      reader.bytes(reader.u32(), 512);
-      reader.u8();
-      reader.u8();
-      reader.u32();
-      reader.Angle();
+      GearLevel = reader.u32();
       reader.u64();
-      reader.u8();
-      reader.u64();
-      reader.array(
-        reader.u16(),
-        () => {
-          reader.u16();
-          reader.u32();
-          reader.u16();
-          reader.LostArkDateTime();
-          if (reader.bl()) reader.u8();
-          reader.bytes(reader.u16(), 3, 14);
-        },
-        9);
-      reader.u32();
-      reader.u8();
-      reader.bytes(reader.u16(), 200, 4);
-      ClassId = reader.u16();
-      reader.u32();
-      reader.bytes(5);
-      Name = reader.str();
-      reader.u32();
-      reader.u32();
-      reader.array(
-        reader.u16(),
-        () => {
-          reader.ReadNBytesInt64();
-          reader.u8();
-        },
-        152);
-      reader.bytes(25);
       reader.u8();
       reader.u16();
+      reader.u8();
+      reader.bytes(reader.u32(), 512);
+      reader.array(reader.u16(), () => Unk.read15(reader), 5);
+      Level = reader.u16();
       reader.u32();
-      reader.array(reader.u16(), () => new StatusEffectData(r), 80);
-      PlayerId = reader.u64();
+      reader.u8();
+      reader.u32();
     }
 
     public string Name { get; }

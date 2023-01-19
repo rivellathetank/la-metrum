@@ -4,85 +4,74 @@ namespace LaMetrum {
   class PKTInitPC : IMessage {
     public PKTInitPC(FieldReader r) {
       TsReader reader = new(r);
-      reader.bytes(25);
-      reader.u16();
-      reader.u32();
-      ClassId = reader.u16();
-      reader.u64();
-      reader.u32();
-      reader.u8();
-      reader.u16();
-      reader.u16();
-      reader.skip(66);
-      Level = reader.u16();
-      reader.skip(44);
-      reader.array(
-        reader.u16(),
-        () => {
-          reader.ReadNBytesInt64();
-          reader.u8();
-        },
-        152);
-      reader.u32();
-      reader.u8();
-      reader.u16();
-      reader.u32();
-      reader.u8();
-      reader.array(reader.u16(), () => new StatusEffectData(r), 80);
-      reader.u8();
-      reader.bytes(reader.u16(), 104, 30);
-      reader.u64();
-      reader.u32();
-      reader.u8();
-      reader.u8();
-      reader.u32();
-      reader.u8();
-      reader.u32();
-      reader.u8();
-      reader.u8();
-      PlayerId = reader.u64();
-      reader.u16();
-      Name = reader.str();
-      reader.u8();
-      reader.u32();
-      reader.u8();
-      reader.array(
-        reader.u16(),
-        () => {
-          reader.u64();
-          reader.ReadNBytesInt64();
-          reader.u8();
-          reader.u16();
-          reader.ReadNBytesInt64();
-          reader.u8();
-          reader.u8();
-        },
-        5);
-      reader.u8();
-      if (reader.bl()) reader.u32();
-      reader.u32();
-      reader.u8();
-      reader.u64();
-      reader.u64();
-      reader.str(7);
-      reader.u8();
-      reader.u8();
-      reader.u32();
-      reader.bytes(reader.u16(), 3, 17);
-      reader.u64();
+      reader.array(reader.u16(), () => Unk.read13(reader), 80);
       reader.u8();
       reader.u8();
       reader.u32();
       GearLevel = reader.u32();
+      reader.u32();
       reader.u8();
-      reader.bytes(reader.u16(), 57);
-      reader.bytes(35);
+      Name = reader.str(20);
       reader.u8();
       reader.u8();
       reader.u32();
+      reader.u16();
+      reader.bytes(35);
+      reader.u8();
+      reader.u32();
+      reader.u64();
+      reader.array(reader.u16(), () => Unk.read15(reader), 5);
+      reader.u32();
+      reader.u8();
+      reader.u32();
+      reader.u32();
+      reader.u8();
+      reader.u32();
+      if (reader.bl()) reader.u32();
+      reader.bytes(reader.u16(), 57);
+      reader.u8();
+      reader.u8();
+      reader.u8();
+      reader.u64();
+      reader.bytes(reader.u16(), 3, 17);
+      reader.u64();
+      reader.u8();
+      reader.u8();
+      reader.u16();
+      reader.u8();
+      reader.u8();
+      reader.u8();
+      reader.u8();
+      PlayerId = reader.u64();
+      reader.u32();
+      reader.u16();
+      reader.array(
+        reader.u16(),
+        () => {
+          reader.u8();
+          Unk.read14(reader);
+        },
+        152);
+      reader.u8();
+      reader.bytes(reader.u16(), 104, 30);
+      reader.u64();
+      reader.u32();
+      reader.u32();
+      reader.bytes(25);
+      reader.u8();
+      reader.skip(79);
+      Level = reader.u16();
+      reader.skip(31);
+      reader.u64();
+      reader.str(7);
+      ClassId = reader.u16();
+      reader.u16();
+      reader.u8();
+      reader.u16();
+      reader.u32();
     }
 
-    public const ushort OpCode = 44217;
+    public const ushort OpCode = 50429;
 
     public void Validate() {
       Check(PlayerId <= (ulong.MaxValue >> 16), PlayerId);

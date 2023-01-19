@@ -5,7 +5,7 @@ namespace LaMetrum {
       projectileInfo = new ProjectileInfo(r);
     }
 
-    public const ushort OpCode = 1296;
+    public const ushort OpCode = 36459;
 
     public void Validate() {
       Check(OwnerId <= (ulong.MaxValue >> 16), OwnerId);
@@ -24,7 +24,7 @@ namespace LaMetrum {
     public uint SkillId => projectileInfo.SkillId;
     public uint SkillEffect => projectileInfo.SkillEffect;
     public byte SkillLevel => projectileInfo.SkillLevel;
-    public byte[] Tripods => projectileInfo.Tripods;
+    public byte[] Tripods => projectileInfo.tripodIndex;
 
     public R Visit<R, A>(IMessageVisitor<R, A> v, A arg) => v.Visit(this, arg);
 
