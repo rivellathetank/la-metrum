@@ -1,0 +1,11 @@
+sed -E                                     \
+  -e '/^[ ]*const [^ ]+ = \{\};$/d'        \
+  -e '/^[ ]*return [^ ]+;$/d'              \
+  -e '/[^{}(;,]$/N'                        \
+  -e 's/\n[ ]*/ /g'                        \
+  -e 's/ \)/)/g'                           \
+  -e 's/reader\.bool\(/reader.bl(/g'       \
+  -e 's/reader\.string\(/reader.str(/g'    \
+  -e 's/(read[0-9]+)/Unk.\1/g'             \
+  -e 's/([^ ]+\.)(Unk|struct_)[^ ]* = //g' \
+  -e 's/data\.//g'
