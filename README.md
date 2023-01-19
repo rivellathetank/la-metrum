@@ -5,6 +5,7 @@
 - [Usage](#usage)
 - [Logs](#logs)
 - [Updates](#updates)
+- [Troubleshooting](#troubleshooting)
 - [Limitations](#limitations)
 - [Compiling](#compiling)
 - [License](#license)
@@ -56,8 +57,42 @@ When Lost Ark client is updated, the damage meter may stop working. Once the dam
 updated and a new version is released, you'll need to upgrade to it. [Installation](#installation)
 instructions work for upgrading to the latest version, too.
 
-If you want to be notified about new releases, click *Watch* at the top, then *Custom* and tick
-*Releases*. You'll need a GitHub account for that.
+If you want to be notified about new releases, click *Watch* at the top of the GitHub page, then
+*Custom* and tick *Releases*. You'll need a GitHub account for that.
+
+## Troubleshooting
+
+### Missing Player Names
+
+If you are seeing "$" (dollar sign) followed by a bunch of numbers instead of player names, go to
+*Char. Select* and log back in. The same workaround works if you are seeing "YOU" (literally)
+instead of your own name.
+
+### Missing All Data
+
+If the damage meter window stays empty when you are dealing damage, check the latest `DEBUG` log
+file in `%LOCALAPPDATA%\rivellathetank\la-metrum`. If there are errors, please
+[open an issue](#issues). If there are no errors and practially no messages after "SYN", you have
+probably didn't allow LaMetrum access to private and/or public networks when it asked you on the
+first run. To fix this:
+
+1. Close LaMetrum.
+2. Click *Start*.
+3. Search for "Allow an app through Windows firewall" and click it.
+4. Remove all "LaMetrum" apps from the list.
+5. Start LaMetrum.
+6. When it asks for network access, make sure that both checkboxes are ticked and then allow.
+
+### Partially Missing Data for Other Players
+
+LaMetrum is unable to see actions performed by other players if they are "far" and may
+underreport their damage. This happens in the following cases:
+
+- The encounter splits raid members into different "rooms". For example, when Moon and Sun parties
+  in Argos are split, LaMetrum cannot see what the other party is doing. The same thing happens in
+  Vykas G1.
+- Other players are on the other side of a large area. For example, LaMetrum won't see what
+  players in the North-Western corner of Lush Reeds are doing when you are in the South-East.
 
 ## Limitations
 
