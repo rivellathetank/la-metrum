@@ -1,4 +1,4 @@
-# la-metrum: Damage Meter for Lost Ark
+# LaMetrum: A Damage Meter for Lost Ark
 
 - [Screenshots](#screenshots)
 - [Installation](#installation)
