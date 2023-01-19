@@ -5,10 +5,10 @@
 - [Usage](#usage)
 - [Logs](#logs)
 - [Updates](#updates)
-- [Troubleshooting](#troubleshooting)
-- [Limitations](#limitations)
 - [Compiling](#compiling)
 - [License](#license)
+- [Limitations](#limitations)
+- [Troubleshooting](#troubleshooting)
 
 The high-level architecture is the same as in [shalzuth/LostArkLogger](
   https://github.com/shalzuth/LostArkLogger). The binary protocol (symmetric encryption key,
@@ -60,7 +60,37 @@ instructions work for upgrading to the latest version, too.
 If you want to be notified about new releases, click *Watch* at the top of the GitHub page, then
 *Custom* and tick *Releases*. You'll need a GitHub account for that.
 
+## Compiling
+
+```shell
+git clone --config core.autocrlf=true https://github.com/rivellathetank/la-metrum.git
+cd la-metrum
+dotnet.exe publish -c Release -r win-x64 --self-contained
+```
+
+After that you can run `bin/x64/Release/net7.0-windows/win-x64/publish/LaMetrum.exe`.
+
+If you need to create `la-metrum.zip` for a new release, run `./publish`.
+
+## License
+
+GPLv3.
+
+## Limitations
+
+Only Steam client is supported.
+
 ## Troubleshooting
+
+### Error on Startup: *Lost Ark version does not match LaMetrum compatibility version*
+
+See [Updates](#updates).
+
+If the error message says "Please download the latest version of LaMetrum", the update is already
+out and you just need to upgrade to it.
+
+If the error message says "Please wait for a new version of LaMetrum to be released", LaMetrum
+hasn't yet been updated. All you can do at this point is wait. It may take a day or two.
 
 ### Missing Player Names
 
@@ -93,23 +123,3 @@ underreport their damage. This happens in the following cases:
   Vykas G1.
 - Other players are on the other side of a large area. For example, LaMetrum won't see what
   players in the North-Western corner of Lush Reeds are doing when you are in the South-East.
-
-## Limitations
-
-Only Steam client is supported.
-
-## Compiling
-
-```shell
-git clone --config core.autocrlf=true https://github.com/rivellathetank/la-metrum.git
-cd la-metrum
-dotnet.exe publish -c Release -r win-x64 --self-contained
-```
-
-After that you can run `bin/x64/Release/net7.0-windows/win-x64/publish/LaMetrum.exe`.
-
-If you need to create `la-metrum.zip` for a new release, run `./publish`.
-
-## License
-
-GPLv3.
