@@ -104,10 +104,11 @@ Only Steam client is supported.
 git clone --config core.autocrlf=true https://github.com/rivellathetank/la-metrum.git
 cd la-metrum
 dotnet.exe publish -c Release -r win-x64 --self-contained
-zip la-metrum.zip bin/x64/Release/net7.0-windows/win-x64/publish/*
 ```
 
-This is how releases are built. Builds are reproducible.
+After that you can run `bin/x64/Release/net7.0-windows/win-x64/publish/LaMetrum.exe`.
+
+If you need to create `la-metrum.zip` for a new release, run `./publish`.
 
 ## License
 
