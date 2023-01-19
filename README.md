@@ -92,6 +92,11 @@ out and you just need to upgrade to it.
 If the error message says "Please wait for a new version of LaMetrum to be released", LaMetrum
 hasn't yet been updated. All you can do at this point is wait. It may take a day or two.
 
+### Crash on Startup
+
+If starting LaMetrum opens a console window, you are using the wrong executable. You need to run
+`LaMetrum.exe` and not `createdump.exe`.
+
 ### Missing Player Names
 
 If you are seeing "$" (dollar sign) followed by a bunch of numbers instead of player names, go to
