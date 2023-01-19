@@ -37,7 +37,7 @@ namespace LaMetrum {
       reader.u64();
       reader.u8();
       reader.u8();
-      reader.u16();
+      Level = reader.u16();
       reader.u8();
       reader.u8();
       reader.u8();
@@ -60,7 +60,7 @@ namespace LaMetrum {
       reader.bytes(25);
       reader.u8();
       reader.skip(79);
-      Level = reader.u16();
+      reader.u16();
       reader.skip(31);
       reader.u64();
       reader.str(7);
