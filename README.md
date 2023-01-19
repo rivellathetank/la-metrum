@@ -107,16 +107,15 @@ instead of your own name.
 
 If the damage meter window stays empty when you are dealing damage, check the latest `DEBUG` log
 file in `%LOCALAPPDATA%\rivellathetank\la-metrum`. If there are errors, please
-[open an issue](#issues). If there are no errors and practially no messages after "SYN", you have
-probably didn't allow LaMetrum access to private and/or public networks when it asked you on the
-first run. To fix this:
+[open an issue](#issues). If there are no errors and practially no messages after "SYN", LaMetrum
+likely doesn't have permissions to access private and/or public networks. To fix this:
 
 1. Close LaMetrum.
 2. Click *Start*.
 3. Search for "Allow an app through Windows firewall" and click it.
-4. Remove all "LaMetrum" apps from the list.
-5. Start LaMetrum.
-6. When it asks for network access, make sure that both checkboxes are ticked and then allow.
+4. If there are "LaMetrum" apps in the list, remove them.
+5. Manually add LaMetrum to the list and give it access to public and private networks.
+6. Start LaMetrum.
 
 ### Partially Missing Data for Other Players
 
