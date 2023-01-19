@@ -39,6 +39,8 @@ namespace LaMetrum {
     // Invariant: FrontAttack is not null.
     public HitStats FrontAttack { get; set; } = new();
 
+    public double PosRate => 1.0 * (BackAttack.NumHits + FrontAttack.NumHits) / Math.Max(1, Total.NumHits);
+
     public DamageStats Clone() {
       DamageStats res = (DamageStats)MemberwiseClone();
       res.Total = res.Total?.Clone();

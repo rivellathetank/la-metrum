@@ -50,14 +50,14 @@ namespace LaMetrum {
       buf.AppendFormat("\n{0}Trigger = {1}, T0 = {2:HH:mm}, T = {3}, DMG = {4}, DPS = {5}, Start = {6}",
                        ident, trigger, StartTime, Fmt.MinSec(battleDuration), Fmt.SI(totalDamage),
                        Fmt.SI(totalDamage / Math.Max(1, battleDuration.TotalSeconds)), StartReason);
-      buf.AppendFormat("\n{0}------------------------------------------------------------------------------------------------", ident);
-      buf.AppendFormat("\n{0}PLAYER           CLASS        ILVL BUILD                   DMG   DPS   DMG% CRIT  ALIVE DIE KILL", ident);
-      buf.AppendFormat("\n{0}------------------------------------------------------------------------------------------------", ident);
+      buf.AppendFormat("\n{0}----------------------------------------------------------------------------------------------------", ident);
+      buf.AppendFormat("\n{0}PLAYER           CLASS        ILVL BUILD                   DMG   DPS   DMG% CRIT POS%  ALIVE DIE KILL", ident);
+      buf.AppendFormat("\n{0}----------------------------------------------------------------------------------------------------", ident);
       foreach (Entity x in Players.Values.OrderByDescending(x => (x.TotalStats.Total.TotalDamage, x.Deaths.Count))) {
         if (x.TotalStats.Total.TotalDamage == 0 && x.Deaths.Count == 0) break;
         TimeSpan alive = x.Deaths.Count == 0 ? battleDuration : x.Deaths[^1] - StartTime;
         buf.AppendFormat(
-            "\n{0}{1,-16} {2,-12} {3,4} {4,-16} {5,10} {6,5} {7,5:F1}% {8,3:F0}% {9,6} {10,3} {11,4}",
+            "\n{0}{1,-16} {2,-12} {3,4} {4,-16} {5,10} {6,5} {7,5:F1}% {8,3:F0}% {9,3:F0}% {10,6} {11,3} {12,4}",
             ident,
             x.Name,
             x.Class,
@@ -67,6 +67,7 @@ namespace LaMetrum {
             Fmt.SI(x.TotalStats.Total.TotalDamage / Math.Max(1, alive.TotalSeconds)),
             100.0 * x.TotalStats.Total.TotalDamage / totalDamage,
             100 * x.TotalStats.Total.CritRate,
+            100 * x.TotalStats.PosRate,
             Fmt.MinSec(alive),
             x.Deaths.Count > 99 ? "99+" : x.Deaths.Count > 0 ? x.Deaths.Count.ToString() : "",
             x.Kills > 999 ? "999+" : x.Kills > 0 ? x.Kills.ToString() : "");

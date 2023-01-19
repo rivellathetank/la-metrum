@@ -144,8 +144,8 @@ namespace LaMetrum {
       }
     }
 
-    const string BattleHeader = "PLAYER           CLASS        ILVL BUILD              DMG   DPS   DMG% CRIT  ALIVE DIE KILL";
-    const string PlayerHeader = "SKILL                            LV TRI TLV  HITS   DMG   DPS   DMG% CRIT";
+    const string BattleHeader = "PLAYER           CLASS        ILVL BUILD              DMG   DPS   DMG% CRIT POS% ALIVE DIE KILL";
+    const string PlayerHeader = "SKILL                            LV TRI TLV  HITS   DMG   DPS   DMG% CRIT POS%";
 
     void DrawBattle(PaintEventArgs e) {
       int i = 0;
@@ -167,7 +167,7 @@ namespace LaMetrum {
       foreach (Entity x in players) {
         TimeSpan alive = x.Deaths.Count == 0 ? battleDuration : x.Deaths[^1] - b.StartTime;
         string text = string.Format(
-            "{0,-16} {1,-12} {2,4} {3,-16} {4,5} {5,5} {6,5:F1}% {7,3:F0}% {8,6} {9,3} {10,4}",
+            "{0,-16} {1,-12} {2,4} {3,-16} {4,5} {5,5} {6,5:F1}% {7,3:F0}% {8,3:F0}% {9,6} {10,3} {11,4}",
             x.Name,
             x.Class,
             x.ItemLevel.HasValue ? ((int)x.ItemLevel.Value).ToString() : "-",
@@ -176,6 +176,7 @@ namespace LaMetrum {
             Fmt.SI(x.TotalStats.Total.TotalDamage / Math.Max(1, alive.TotalSeconds)),
             100.0 * x.TotalStats.Total.TotalDamage / totalDamage,
             100 * x.TotalStats.Total.CritRate,
+            100 * x.TotalStats.PosRate,
             Fmt.MinSec(alive),
             x.Deaths.Count > 99 ? "99+" : x.Deaths.Count > 0 ? x.Deaths.Count.ToString() : "",
             x.Kills > 999 ? "999+" : x.Kills > 0 ? x.Kills.ToString() : "");
@@ -200,7 +201,7 @@ namespace LaMetrum {
       foreach ((string name, SkillStats stats) in skills) {
         if (stats.Stats.Total.NumHits == 0) continue;
         string text = string.Format(
-            "{0,-32} {1,2} {2,3} {3,3} {4,5} {5,5} {6,5} {7,5:F1}% {8,3:F0}%",
+            "{0,-32} {1,2} {2,3} {3,3} {4,5} {5,5} {6,5} {7,5:F1}% {8,3:F0}% {9,3:F0}%",
             name.Length > 32 ? name[..32] : name,
             stats.Build?.Level,
             stats.Build?.Level > 1 && stats.Build?.Tripods is not null ?
@@ -211,7 +212,8 @@ namespace LaMetrum {
             Fmt.SI(stats.Stats.Total.TotalDamage),
             Fmt.SI(stats.Stats.Total.TotalDamage / Math.Max(1, alive.TotalSeconds)),
             100.0 * stats.Stats.Total.TotalDamage / Math.Max(1, player.TotalStats.Total.TotalDamage),
-            100 * stats.Stats.Total.CritRate);
+            100 * stats.Stats.Total.CritRate,
+            100 * stats.Stats.PosRate);
         if (!DrawRow(e, _regular, Bright(i), i + 2, text, Dim(i), 1.0 * stats.Stats.Total.TotalDamage / max)) break;
         ++i;
       }
