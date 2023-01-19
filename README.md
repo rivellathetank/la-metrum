@@ -107,8 +107,9 @@ instead of your own name.
 
 If the damage meter window stays empty when you are dealing damage, check the latest `DEBUG` log
 file in `%LOCALAPPDATA%\rivellathetank\la-metrum`. If there are errors, please
-[open an issue](#issues). If there are no errors and practially no messages after "SYN", LaMetrum
-likely doesn't have permissions to access private and/or public networks. To fix this:
+[open an issue](https://github.com/rivellathetank/la-metrum/issues). If there are no errors and
+practically no messages after "SYN", LaMetrum likely doesn't have permissions to access private
+and/or public networks. To fix this:
 
 1. Close LaMetrum.
 2. Click *Start*.
