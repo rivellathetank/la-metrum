@@ -2,14 +2,14 @@ namespace LaMetrum {
   class SkillDamageEvent {
     public SkillDamageEvent(FieldReader r) {
       TsReader reader = new(r);
-      reader.i16();
+      TargetId = reader.u64();
       CurHp = reader.ReadNBytesInt64();
       Damage = reader.ReadNBytesInt64();
+      reader.i16();
       if (reader.bl()) reader.u8();
       reader.u8();
-      Modifier = reader.u8();
-      TargetId = reader.u64();
       MaxHp = reader.ReadNBytesInt64();
+      Modifier = reader.u8();
     }
 
     public void Validate() {

@@ -2,19 +2,19 @@ namespace LaMetrum {
   class PKTDeathNotify : IMessage {
     public PKTDeathNotify(FieldReader r) {
       TsReader reader = new(r);
-      if (reader.bl()) reader.u8();
+      TargetId = reader.u64();
       reader.u32();
       reader.u32();
       reader.u64();
-      reader.u16();
-      if (reader.bl()) reader.u8();
       reader.u8();
       SourceId = reader.u64();
-      TargetId = reader.u64();
+      if (reader.bl()) reader.u8();
+      reader.u16();
+      if (reader.bl()) reader.u8();
       if (reader.bl()) reader.u8();
     }
 
-    public const ushort OpCode = 29634;
+    public const ushort OpCode = 21574;
 
     public void Validate() {
       Check(SourceId <= (ulong.MaxValue >> 16), SourceId);

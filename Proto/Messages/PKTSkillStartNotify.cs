@@ -2,18 +2,18 @@ namespace LaMetrum {
   class PKTSkillStartNotify : IMessage {
     public PKTSkillStartNotify(FieldReader r) {
       TsReader reader = new(r);
-      SourceId = reader.u64();
-      Unk.read21(reader);
-      if (reader.bl()) reader.i32();
-      Unk.read21(reader);
-      Unk.read22(reader);
-      Unk.read21(reader);
-      if (reader.bl()) reader.u32();
       SkillLevel = reader.u8();
+      if (reader.bl()) reader.u32();
       SkillId = reader.u32();
-      Unk.read22(reader);
       SkillOptionData = reader.ReadFlagBytes();
       if (reader.bl()) Unk.read22(reader);
+      Unk.read22(reader);
+      Unk.read21(reader);
+      Unk.read21(reader);
+      Unk.read21(reader);
+      Unk.read22(reader);
+      if (reader.bl()) reader.i32();
+      SourceId = reader.u64();
 
       if (SkillOptionData[6] is not null) {
         Check(SkillOptionData[6].Length == 6);
@@ -25,7 +25,7 @@ namespace LaMetrum {
       }
     }
 
-    public const ushort OpCode = 28344;
+    public const ushort OpCode = 13284;
 
     public void Validate() {
       Check(SkillId <= int.MaxValue);

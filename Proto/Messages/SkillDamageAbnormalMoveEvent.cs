@@ -8,15 +8,15 @@ namespace LaMetrum {
   class SkillDamageAbnormalMoveEvent {
     public SkillDamageAbnormalMoveEvent(FieldReader r) {
       TsReader reader = new(r);
-      reader.u8();
-      reader.u64();
-      Unk.read47(reader);
       reader.u16();
-      reader.u16();
-      Unk.read21(reader);
-      reader.u16();
-      Unk.read21(reader);
       skillDamageEvent = new(r);
+      Unk.read21(reader);
+      reader.u16();
+      reader.u8();
+      Unk.read21(reader);
+      Unk.read49(reader);
+      reader.u16();
+      reader.u64();
     }
 
     public SkillDamageEvent skillDamageEvent { get; }

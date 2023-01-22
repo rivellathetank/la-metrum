@@ -5,7 +5,7 @@ namespace LaMetrum {
       projectileInfo = new ProjectileInfo(r);
     }
 
-    public const ushort OpCode = 36459;
+    public const ushort OpCode = 45143;
 
     public void Validate() {
       Check(OwnerId <= (ulong.MaxValue >> 16), OwnerId);

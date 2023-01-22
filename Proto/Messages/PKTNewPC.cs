@@ -4,16 +4,16 @@ namespace LaMetrum {
   class PKTNewPC : IMessage {
     public PKTNewPC(FieldReader r) {
       TsReader reader = new(r);
-      if (reader.bl()) reader.bytes(20);
+      reader.u8();
       if (reader.bl()) reader.bytes(12);
-      reader.u8();
-      reader.u8();
-      PCStruct = new(r);
-      if (reader.bl()) Unk.read27(reader);
       if (reader.bl()) reader.u32();
+      if (reader.bl()) reader.bytes(20);
+      if (reader.bl()) Unk.read26(reader);
+      PCStruct = new(r);
+      reader.u8();
     }
 
-    public const ushort OpCode = 55660;
+    public const ushort OpCode = 58123;
 
     public void Validate() {
       Check(ItemLevel >= 0 && ItemLevel <= 2000, ItemLevel);
