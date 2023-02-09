@@ -144,7 +144,7 @@ namespace LaMetrum {
       }
     }
 
-    const string BattleHeader = "PLAYER           CLASS        ILVL BUILD              DMG   DPS   DMG% CRIT POS% ALIVE DIE KILL";
+    const string BattleHeader = "PLAYER           CLASS        ILVL BUILD              DMG   DPS   DMG% CRIT POS%  ALIVE DIE KILL";
     const string PlayerHeader = "SKILL                            LV TRI TLV  HITS   DMG   DPS   DMG% CRIT POS%";
 
     void DrawBattle(PaintEventArgs e) {
