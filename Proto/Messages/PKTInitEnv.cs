@@ -2,24 +2,24 @@ namespace LaMetrum {
   class PKTInitEnv : IMessage {
     public PKTInitEnv(FieldReader r) {
       TsReader reader = new(r);
-      Unk.read11(reader);
-      reader.u8();
-      PlayerId = reader.u64();
-      reader.u64();
-      reader.u32();
-      reader.array<ushort>();
-      reader.u32();
       reader.array(
         reader.u16(),
         () => {
-          reader.array<ushort>();
-          reader.array<ushort>();
-          reader.array<ushort>();
+          reader.skip(2 * reader.u16());
+          reader.skip(2 * reader.u16());
+          reader.skip(2 * reader.u16());
         },
         64);
+      reader.skip(2 * reader.u16());
+      reader.u32();
+      reader.u32();
+      Unk.read11(reader);
+      SamePlayer = reader.u8();
+      PlayerId = reader.u64();
+      reader.u64();
     }
 
-    public const ushort OpCode = 43353;
+    public const ushort OpCode = 57806;
 
     public void Validate() {
       Check(PlayerId <= (ulong.MaxValue >> 16), PlayerId);

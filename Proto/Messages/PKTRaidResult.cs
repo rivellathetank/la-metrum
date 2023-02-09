@@ -4,7 +4,7 @@
       reader.Discard();
     }
 
-    public const ushort OpCode = 13462;
+    public const ushort OpCode = 6589;
 
     public void Validate() { }
 

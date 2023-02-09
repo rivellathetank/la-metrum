@@ -6,14 +6,14 @@ namespace LaMetrum {
       TsReader reader = new(r);
       reader.u8();
       if (reader.bl()) reader.bytes(12);
-      if (reader.bl()) reader.u32();
       if (reader.bl()) reader.bytes(20);
-      if (reader.bl()) Unk.read26(reader);
       PCStruct = new(r);
       reader.u8();
+      if (reader.bl()) reader.u32();
+      if (reader.bl()) Unk.read27(reader);
     }
 
-    public const ushort OpCode = 58123;
+    public const ushort OpCode = 8067;
 
     public void Validate() {
       Check(ItemLevel >= 0 && ItemLevel <= 2000, ItemLevel);

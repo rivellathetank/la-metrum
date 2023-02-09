@@ -9,7 +9,7 @@ namespace LaMetrum {
       SkillDamageEvents = reader.array<SkillDamageEvent>();
     }
 
-    public const ushort OpCode = 2813;
+    public const ushort OpCode = 23135;
 
     public void Validate() {
       Check(SourceId <= (ulong.MaxValue >> 16), SourceId);

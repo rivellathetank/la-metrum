@@ -11,7 +11,7 @@ namespace LaMetrum {
       reader.skip(9);
     }
 
-    public const ushort OpCode = 26596;
+    public const ushort OpCode = 45531;
 
     public void Validate() {
       Check(OwnerId <= (ulong.MaxValue >> 16), OwnerId);
