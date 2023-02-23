@@ -1,5 +1,8 @@
 # LaMetrum: A Damage Meter for Lost Ark
 
+**DEPRECATION NOTICE: LaMetrum will soon stop being supported.** Please migrate to
+[lost-ark-dev/loa-details](https://github.com/lost-ark-dev/loa-details).
+
 - [Screenshots](#screenshots)
 - [Installation](#installation)
 - [Usage](#usage)
